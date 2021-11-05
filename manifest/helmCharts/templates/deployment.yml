@@ -19,7 +19,7 @@ spec:
       volumes:
         - name: application-conf
           secret:
-            secretName: application.conf
+            secretName: uservice-application-conf
             defaultMode: 420
       containers:
         - name: uservice-party-management
@@ -93,5 +93,5 @@ spec:
             - name: REQUIRED_CONTACT_POINT_NR
               value: "1"
           volumeMounts:
-            - name: uservice-party-management-application-conf
+            - name: application-conf
               mountPath: /opt/docker/etc
