@@ -16,16 +16,11 @@ spec:
     spec:
       imagePullSecrets:
         - name: regcred
-      volumes:
-        - name: application-conf
-          secret:
-            secretName: uservice-application-conf
-            defaultMode: 420
       containers:
         - name: uservice-party-management
           image: {{ .Values.containerRegistry }}/{{ .Values.imageRepository }}
           command: ["bin/pdnd-interop-uservice-party-management"]
-          args: ["-Dconfig.file=etc/application.conf", "-Dconfig.override_with_env_vars=true"]
+          args: ["-Dconfig.override_with_env_vars=true"]
           imagePullPolicy: Always
           readinessProbe:
             httpGet:
@@ -60,6 +55,16 @@ spec:
                 secretKeyRef:
                   name: postgres
                   key: POSTGRES_HOST
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: POSTGRES_DB
+            - name: POSTGRES_SCHEMA
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: POSTGRES_SCHEMA
             - name: POSTGRES_USR
               valueFrom:
                 secretKeyRef:
@@ -92,6 +97,3 @@ spec:
                   fieldPath: metadata.namespace
             - name: REQUIRED_CONTACT_POINT_NR
               value: "1"
-          volumeMounts:
-            - name: application-conf
-              mountPath: /opt/docker/etc
