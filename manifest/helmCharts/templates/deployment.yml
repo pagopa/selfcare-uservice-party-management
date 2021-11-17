@@ -61,10 +61,7 @@ spec:
                   name: postgres
                   key: POSTGRES_DB
             - name: POSTGRES_SCHEMA
-              valueFrom:
-                secretKeyRef:
-                  name: postgres
-                  key: POSTGRES_SCHEMA
+              value: {{ .Values.postgresSchema }}
             - name: POSTGRES_USR
               valueFrom:
                 secretKeyRef:
