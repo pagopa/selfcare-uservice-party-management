@@ -49,11 +49,12 @@ spec:
           securityContext:
             runAsUser: 1001
             allowPrivilegeEscalation: false
+          envFrom:
+            - secretRef:
+                name: application-insights
           env:
             - name: JAVA_TOOL_OPTIONS
               value: -javaagent:/applicationinsights-agent.jar
-            - secretRef:
-                name: application-insights
             - name: APPLICATIONINSIGHTS_ROLE_NAME
               value: uservice-party-management
             - name: APPLICATIONINSIGHTS_INSTRUMENTATION_LOGGING_LEVEL
