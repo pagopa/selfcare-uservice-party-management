@@ -34,9 +34,9 @@ variables:
   # Image Repository Name
   imageRepository: '$(K8S_IMAGE_REPOSITORY_NAME)'
   deployNamespace: '$(DEPLOY_NAMESPACE)'
-  postgresSchema: 'public' # TODO '$(POSTGRES_SCHEMA)'
 
   # App configuration
+  postgresSchema: '$(POSTGRES_SCHEMA)'
   storageType: 'BlobStorage'
 
   ${{ if eq(parameters['environment'], 'dev') }}:
