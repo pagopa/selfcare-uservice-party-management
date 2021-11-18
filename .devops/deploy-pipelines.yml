@@ -34,7 +34,7 @@ variables:
   # Image Repository Name
   imageRepository: '$(K8S_IMAGE_REPOSITORY_NAME)'
   deployNamespace: '$(DEPLOY_NAMESPACE)'
-  postgresSchema: 'public' # TODO read from env vars
+  postgresSchema: '$(POSTGRES_SCHEMA)'
 
   # App configuration
   storageType: 'BlobStorage'
