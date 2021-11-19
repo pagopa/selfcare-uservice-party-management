@@ -36,7 +36,7 @@ variables:
   deployNamespace: '$(DEPLOY_NAMESPACE)'
 
   # App configuration
-  postgresSchema: 'public' # TODO restore me $(POSTGRES_SCHEMA)'
+  postgresSchema: '$(POSTGRES_SCHEMA)'
   storageType: 'BlobStorage'
 
   ${{ if eq(parameters['environment'], 'dev') }}:
