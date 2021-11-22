@@ -164,6 +164,4 @@ stages:
                     manifests: |
                       $(bake.manifestsBundle)
                       $(Pipeline.Workspace)/manifests/service.yml
-                      $(Pipeline.Workspace)/manifests/role.yml
-                      $(Pipeline.Workspace)/manifests/roleBinding.yml
                     containers: '$(containerRegistry)/$(imageRepository):${{ parameters.version }}'
