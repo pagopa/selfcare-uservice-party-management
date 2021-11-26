@@ -1,9 +1,0 @@
-{
-  "preview": {
-    "instrumentation": {
-      "akka": {
-        "enabled": true
-      }
-    }
-  }
-}
