@@ -69,7 +69,7 @@ stages:
             name: getDockerImageVersion
             condition: succeeded()
             env:
-              VALUES_FILE: "$(Pipeline.Workspace)/helm/values-${{ lower(variables.environment) }}.yaml"
+              VALUES_FILE: "helm/values-${{ lower(variables.environment) }}.yaml"
             inputs:
               targetType: 'inline'
               script: |
@@ -81,7 +81,7 @@ stages:
             name: updateChartAppVersion
             condition: succeeded()
             env:
-              CHART_FILE: "$(Pipeline.Workspace)/helm/Chart.yaml"
+              CHART_FILE: "helm/Chart.yaml"
               APP_VERSION: '$(dockerImageVersion)'
             inputs:
               targetType: 'inline'
