@@ -82,11 +82,11 @@ stages:
             condition: succeeded()
             env:
               CHART_FILE: "helm/Chart.yaml"
-              APP_VERSION: '$(dockerImageVersion)'
+              APP_VERSION: ${{ variables.dockerImageVersion }}
             inputs:
               targetType: 'inline'
               script: |
-                echo -e "\nappVersion:$APP_VERSION" >> $CHART_FILE
+                echo -e "\nappVersion:\"$APP_VERSION\"" >> $CHART_FILE
               failOnStderr: true
           - task: PublishPipelineArtifact@1
             displayName: 'Publish Artifact helm'
