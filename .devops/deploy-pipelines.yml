@@ -58,7 +58,6 @@ variables:
 stages:
   - stage: 'DataPreparation'
     displayName: 'Configuring_environment_to_deploy_into_${{ variables.environment }}'
-    condition: ${{ parameters.executeBuild }}
     jobs:
       - job: DeterminingVersion
         displayName: DeterminingVersion
