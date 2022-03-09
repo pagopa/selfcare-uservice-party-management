@@ -142,7 +142,7 @@ stages:
   - stage: 'Deploy'
     displayName: 'Deploy_to_${{ variables.environment }}'
     dependsOn: ['Build']
-    condition: or(succeeded(), not(${{ parameters.executeBuild }}) )
+    condition: or(succeeded(), and( not(${{ parameters.executeBuild }}), succeeded('DataPreparation') ))
     jobs:
       - deployment: 'Deploy_to_${{ variables.environment }}'
         displayName: 'Deploy_to_${{ variables.environment }}'
