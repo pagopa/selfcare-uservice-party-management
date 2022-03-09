@@ -88,6 +88,12 @@ stages:
               script: |
                 echo -e "\nappVersion:$APP_VERSION" >> $CHART_FILE
               failOnStderr: true
+          - task: PublishPipelineArtifact@1
+            displayName: 'Publish Artifact helm'
+            inputs:
+              targetPath: 'helm'
+              artifact: 'helm'
+              publishLocation: 'pipeline'
   - stage: 'Build'
     displayName: 'Build_and_Pusblih_to_${{ variables.environment }}'
     condition: and( succeeded(), ${{ parameters.executeBuild }} )
@@ -132,12 +138,6 @@ stages:
                 $(Build.BuildId)
                 latest
                 $(dockerImageVersion)
-          - task: PublishPipelineArtifact@1
-            displayName: 'Publish Artifact helm'
-            inputs:
-              targetPath: '$(Build.Repository.LocalPath)/helm'
-              artifact: 'helm'
-              publishLocation: 'pipeline'
 
   - stage: 'Deploy'
     displayName: 'Deploy_to_${{ variables.environment }}'
