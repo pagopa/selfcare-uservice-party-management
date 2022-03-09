@@ -91,7 +91,7 @@ stages:
               failOnStderr: true
   - stage: 'Build'
     displayName: 'Build_and_Pusblih_to_${{ variables.environment }}'
-    condition: and( success(), ${{ parameters.executeBuild }} )
+    condition: and( succeeded(), ${{ parameters.executeBuild }} )
     dependsOn: DataPreparation
     variables:
       dockerImageVersion: $[ stageDependencies.DataPreparation.DeterminingVersion.outputs['getDockerImageVersion.dockerImageVersion'] ]
