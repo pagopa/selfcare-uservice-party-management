@@ -143,6 +143,8 @@ stages:
     displayName: 'Deploy_to_${{ variables.environment }}'
     dependsOn: ['Build']
     condition: or(succeeded(), and( not(${{ parameters.executeBuild }}), succeeded('DataPreparation') ))
+    variables:
+      dockerImageVersion: $[ stageDependencies.DataPreparation.DeterminingVersion.outputs['getDockerImageVersion.dockerImageVersion'] ]
     jobs:
       - deployment: 'Deploy_to_${{ variables.environment }}'
         displayName: 'Deploy_to_${{ variables.environment }}'
