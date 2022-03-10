@@ -106,6 +106,25 @@ stages:
                 echo 2
                 echo $APP_VERSION_2
               failOnStderr: true
+  - stage: 'VariableExportationTest' # TODO removeme
+    displayName: 'VariableExportationTest'
+    condition: succeeded()
+    dependsOn: DataPreparation
+    variables:
+      dockerImageVersion: $[ stageDependencies.DataPreparation.DeterminingVersion.outputs['getDockerImageVersion.dockerImageVersion'] ]
+    jobs:
+      - job: TestPring
+        displayName: TestPring
+        pool:
+          vmImage: $(vmImageNameDefault)
+        steps:
+          - script: |
+              echo 1
+              echo ${{ variables.dockerImageVersion }} # outputs initialValue
+              echo 2
+              echo $(dockerImageVersion) # outputs secondValue
+              echo 3
+              echo $[dockerImageVersion] # outputs secondValue
   - stage: 'Build'
     displayName: 'Build_and_Pusblih_to_${{ variables.environment }}'
     condition: and( succeeded(), ${{ parameters.executeBuild }} )
