@@ -1,5 +1,5 @@
 image:
-  repository: selcdacr.azurecr.io/pdnd-interop-uservice-party-management
+  repository: selcdacr.azurecr.io/pdndinteropuservicepartymanagement
   tag: v0.1.5
 
 autoscaling:
