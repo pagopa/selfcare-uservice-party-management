@@ -84,6 +84,17 @@ stages:
               targetPath: 'helm'
               artifact: 'helm'
               publishLocation: 'pipeline'
+          - task: Bash@3 # TODO remove me
+            displayName: TemporaryCheckVariable
+            name: TemporaryCheckVariable
+            condition: succeeded()
+            env:
+              APP_VERSION: $(dockerImageVersion)
+            inputs:
+              targetType: 'inline'
+              script: |
+                echo $APP_VERSION
+              failOnStderr: true
   - stage: 'Build'
     displayName: 'Build_and_Pusblih_to_${{ variables.environment }}'
     condition: and( succeeded(), ${{ parameters.executeBuild }} )
@@ -131,7 +142,7 @@ stages:
 
   - stage: 'Deploy'
     displayName: 'Deploy_to_${{ variables.environment }}'
-    dependsOn: ['Build']
+    dependsOn: ['DataPreparation', 'Build']
     condition: or(succeeded(), and( not(${{ parameters.executeBuild }}), succeeded('DataPreparation') ))
     variables:
       dockerImageVersion: $[ stageDependencies.DataPreparation.DeterminingVersion.outputs['getDockerImageVersion.dockerImageVersion'] ]
