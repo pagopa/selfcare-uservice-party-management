@@ -70,23 +70,13 @@ stages:
             condition: succeeded()
             env:
               VALUES_FILE: "helm/values-${{ lower(variables.environment) }}.yaml"
+              CHART_FILE: "helm/Chart.yaml"
             inputs:
               targetType: 'inline'
               script: |
                 version=$(cat $VALUES_FILE | grep '^  tag:' | sed 's/^  tag:\s*//')
+                echo -e "\nappVersion:\"version\"" >> $CHART_FILE
                 echo "##vso[task.setvariable variable=dockerImageVersion;isOutput=true]$version"
-              failOnStderr: true
-          - task: Bash@3
-            displayName: Updating Chart appVersion
-            name: updateChartAppVersion
-            condition: succeeded()
-            env:
-              CHART_FILE: "helm/Chart.yaml"
-              APP_VERSION: ${{ variables.dockerImageVersion }}
-            inputs:
-              targetType: 'inline'
-              script: |
-                echo -e "\nappVersion:\"$APP_VERSION\"" >> $CHART_FILE
               failOnStderr: true
           - task: PublishPipelineArtifact@1
             displayName: 'Publish Artifact helm'
