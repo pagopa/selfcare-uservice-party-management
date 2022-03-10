@@ -84,16 +84,27 @@ stages:
               targetPath: 'helm'
               artifact: 'helm'
               publishLocation: 'pipeline'
+          - script: | # TODO remove me
+              echo 1
+              echo ${{ variables.dockerImageVersion }} # outputs initialValue
+              echo 2
+              echo $(dockerImageVersion) # outputs secondValue
+              echo 3
+              echo $[dockerImageVersion] # outputs secondValue
           - task: Bash@3 # TODO remove me
             displayName: TemporaryCheckVariable
             name: TemporaryCheckVariable
             condition: succeeded()
             env:
-              APP_VERSION: $(dockerImageVersion)
+              APP_VERSION_1: $(dockerImageVersion)
+              APP_VERSION_2: $[dockerImageVersion]
             inputs:
               targetType: 'inline'
               script: |
-                echo $APP_VERSION
+                echo 1
+                echo $APP_VERSION_1
+                echo 2
+                echo $APP_VERSION_2
               failOnStderr: true
   - stage: 'Build'
     displayName: 'Build_and_Pusblih_to_${{ variables.environment }}'
