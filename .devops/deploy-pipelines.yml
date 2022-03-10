@@ -75,7 +75,7 @@ stages:
               targetType: 'inline'
               script: |
                 version=$(cat $VALUES_FILE | grep '^  tag:' | sed 's/^  tag:\s*//')
-                echo -e "\nappVersion:\"version\"" >> $CHART_FILE
+                echo -e "\nappVersion:\"$version\"" >> $CHART_FILE
                 echo "##vso[task.setvariable variable=dockerImageVersion;isOutput=true]$version"
               failOnStderr: true
           - task: PublishPipelineArtifact@1
