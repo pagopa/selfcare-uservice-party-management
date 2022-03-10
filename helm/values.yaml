@@ -40,8 +40,8 @@ securityContext:
 
 service:
   type: ClusterIP
-  port: 8088
-  targetPort: http
+  appPort: 8088
+  appTargetPort: http
   monitoringPort: 9095
   monitoringTargetPort: monitoring
 
