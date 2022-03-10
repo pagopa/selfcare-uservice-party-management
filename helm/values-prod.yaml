@@ -1,5 +1,5 @@
 image:
-  repository: selcpacr.azurecr.io/pdndinteropuservicepartymanagement
+  repository: selcpacr.azurecr.io/uservicepartymanagement
   pullPolicy: Always # TODO change me in IfNotPresent when each build will have a different tag
   tag: v0.1.3
 
