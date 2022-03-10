@@ -75,7 +75,7 @@ stages:
               targetType: 'inline'
               script: |
                 version=$(cat $VALUES_FILE | grep '^  tag:' | sed 's/^  tag:\s*//')
-                echo -e "\nappVersion:\"$version\"" >> $CHART_FILE
+                echo -e "\nappVersion: \"$version\"" >> $CHART_FILE
                 echo "##vso[task.setvariable variable=dockerImageVersion;isOutput=true]$version"
               failOnStderr: true
           - task: PublishPipelineArtifact@1
@@ -84,13 +84,6 @@ stages:
               targetPath: 'helm'
               artifact: 'helm'
               publishLocation: 'pipeline'
-          - script: | # TODO remove me
-              echo 1
-              echo ${{ variables.dockerImageVersion }} # outputs initialValue
-              echo 2
-              echo $(dockerImageVersion) # outputs secondValue
-              echo 3
-              echo $[dockerImageVersion] # outputs secondValue
   - stage: 'Build'
     displayName: 'Build_and_Pusblih_to_${{ variables.environment }}'
     condition: and( succeeded(), ${{ parameters.executeBuild }} )
