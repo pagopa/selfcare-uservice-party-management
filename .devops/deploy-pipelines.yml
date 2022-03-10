@@ -31,6 +31,7 @@ variables:
   # Image Repository Name
   imageRepository: '$(K8S_IMAGE_REPOSITORY_NAME)'
   deployNamespace: '$(DEPLOY_NAMESPACE)'
+  deploymentName: '$(DEPLOYMENT_NAME)'
 
   ${{ if eq(parameters['environment'], 'dev') }}:
     environment: 'DEV'
