@@ -12,3 +12,4 @@ autoscaling:
 configEnvSpecific:
   JAVA_OPTS: "-javaagent:/applicationinsights-agent.jar"
   APPLICATIONINSIGHTS_INSTRUMENTATION_LOGGING_LEVEL: "OFF"
+  REQUIRED_CONTACT_POINT_NR: "1"
