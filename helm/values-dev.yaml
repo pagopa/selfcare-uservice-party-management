@@ -1,0 +1,17 @@
+image:
+  repository: selcdacr.azurecr.io/uservicepartymanagement
+  tag: v0.1.5
+
+replicaCount: 1
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+configEnvSpecific:
+  JAVA_OPTS: "-javaagent:/applicationinsights-agent.jar"
+  APPLICATIONINSIGHTS_INSTRUMENTATION_LOGGING_LEVEL: "OFF"
+  REQUIRED_CONTACT_POINT_NR: "1"
