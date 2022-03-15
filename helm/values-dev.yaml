@@ -2,6 +2,8 @@ image:
   repository: selcdacr.azurecr.io/uservicepartymanagement
   tag: v0.1.5
 
+replicaCount: 1
+
 autoscaling:
   enabled: false
   minReplicas: 1
