@@ -93,3 +93,4 @@ config:
   APPLICATIONINSIGHTS_ROLE_NAME: "uservice-party-management"
   POSTGRES_SCHEMA: "party"
   TOKEN_VALIDITY_HOURS: "1140" # 60 days
+  ENABLED_PROJECTIONS: "false"
