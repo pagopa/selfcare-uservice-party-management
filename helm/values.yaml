@@ -90,7 +90,7 @@ tolerations: []
 affinity: {}
 
 config:
-  APPLICATIONINSIGHTS_ROLE_NAME: "uservice-party-management"
+  APPLICATIONINSIGHTS_ROLE_NAME: "interop-be-party-management"
   APPLICATIONINSIGHTS_INSTRUMENTATION_JDBC_ENABLED: 'false' # this instrumentation will go in conflict with the application (after upgrade to 0.1.11)
   POSTGRES_SCHEMA: "party"
   TOKEN_VALIDITY_HOURS: "1140" # 60 days
