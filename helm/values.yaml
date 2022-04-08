@@ -10,14 +10,14 @@ image:
   tag: "latest"
 
 commandConfig:
-  command: [ "bin/pdnd-interop-uservice-party-management" ]
+  command: [ "bin/interop-be-party-management" ]
   args: [ "-Dconfig.override_with_env_vars=true" ]
 
 imagePullSecrets:
   - name: regcred
 
 nameOverride: ""
-fullnameOverride: "pdnd-interop-uservice-party-management"
+fullnameOverride: "interop-be-party-management"
 
 containers:
   portNumber: 8088
@@ -48,7 +48,7 @@ ingress:
   className: ""
   annotations:
    kubernetes.io/ingress.class: "nginx"
-   nginx.ingress.kubernetes.io/rewrite-target: "/pdnd-interop-uservice-$1/0.1/$2"
+   nginx.ingress.kubernetes.io/rewrite-target: "/$1/0.1/$2"
    nginx.ingress.kubernetes.io/ssl-redirect: "false"
    nginx.ingress.kubernetes.io/use-regex: "true"
    nginx.ingress.kubernetes.io/enable-cors: "true"
@@ -90,6 +90,8 @@ tolerations: []
 affinity: {}
 
 config:
-  APPLICATIONINSIGHTS_ROLE_NAME: "uservice-party-management"
+  APPLICATIONINSIGHTS_ROLE_NAME: "interop-be-party-management"
+  APPLICATIONINSIGHTS_INSTRUMENTATION_JDBC_ENABLED: 'false' # this instrumentation will go in conflict with the application (after upgrade to 0.1.11)
   POSTGRES_SCHEMA: "party"
   TOKEN_VALIDITY_HOURS: "1140" # 60 days
+  ENABLED_PROJECTIONS: "false"
