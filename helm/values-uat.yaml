@@ -1,6 +1,6 @@
 image:
   repository: selcuacr.azurecr.io/uservicepartymanagement
-  tag: 0.1.11
+  tag: 0.1.15
 
 ingress:
   annotations:
