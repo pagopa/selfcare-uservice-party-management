@@ -19,5 +19,5 @@ autoscaling:
 configEnvSpecific:
   JAVA_OPTS: "-javaagent:/applicationinsights-agent.jar"
   APPLICATIONINSIGHTS_INSTRUMENTATION_LOGGING_LEVEL: "OFF"
-  APPLICATIONINSIGHTS_INSTRUMENTATION_JDBC_ENABLED: 'false' # TODO: put me true after PROD have some data: this instrumentation will go in conflict with the application when the db is empty, turn it on (true) only after db population
+  APPLICATIONINSIGHTS_INSTRUMENTATION_JDBC_ENABLED: 'false' # this instrumentation will go in conflict with the application
   REQUIRED_CONTACT_POINT_NR: "1"
