@@ -49,6 +49,8 @@ spec:
                 name: jwt
             - secretRef:
                 name: uservice-party-management
+            - secretRef:
+                name: event-secrets
             - configMapRef:
                 name: {{ include "this.fullname" . }}
           env:
