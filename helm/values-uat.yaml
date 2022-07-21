@@ -20,3 +20,4 @@ configEnvSpecific:
   APPLICATIONINSIGHTS_INSTRUMENTATION_LOGGING_LEVEL: "OFF"
   APPLICATIONINSIGHTS_INSTRUMENTATION_JDBC_ENABLED: 'false' # this instrumentation will go in conflict with the application
   REQUIRED_CONTACT_POINT_NR: "1"
+  ENABLED_PROJECTIONS: "false" # TODO set to TRUE when releasing SELC-1297 and if we want to send events towards datalake
