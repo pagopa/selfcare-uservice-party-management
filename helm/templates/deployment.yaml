@@ -82,14 +82,14 @@ spec:
               port: management
             periodSeconds: 10
             failureThreshold: 5
-            initialDelaySeconds: 30
+            initialDelaySeconds: 90
           livenessProbe:
             httpGet:
               path: "/alive"
               port: management
             periodSeconds: 10
             failureThreshold: 5
-            initialDelaySeconds: 30
+            initialDelaySeconds: 90
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
